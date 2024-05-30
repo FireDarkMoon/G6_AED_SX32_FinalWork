@@ -1,3 +1,2 @@
 Giusephi,Carlos,u202224867,"Geo,Mate,Algeb","12,43,2"
 Fernado,Caruso,u2022,"CACA,PEDO","21,12"
-Martin,Garrix,WAOS,"NULL","0"

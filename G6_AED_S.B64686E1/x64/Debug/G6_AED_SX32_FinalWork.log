@@ -1,5 +1,8 @@
 ﻿  ExtraFunctions.cpp
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\ExtraFunctions.cpp(147,46): warning C4101: 'e': variable local sin referencia
+M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\ExtraFunctions.cpp(148,31): warning C4101: 'e': variable local sin referencia
+  Functions.cpp
+M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\Functions.cpp(5,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\Functions.cpp(108,2): warning C4809: la instrucción switch tiene una etiqueta 'default' redundante; se proporcionan todas las etiquetas 'case' posibles
   Main.cpp
 M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(9,21): warning C4309: 'inicializando': truncamiento de valor constante
 M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(18,22): warning C4309: 'inicializando': truncamiento de valor constante
@@ -33,7 +36,7 @@ M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_A
 M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(52,23): warning C4309: 'inicializando': truncamiento de valor constante
 M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(53,23): warning C4309: 'inicializando': truncamiento de valor constante
 M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(54,21): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\ExtraFunctions.h(15,42): error C2061: error de sintaxis: identificador 'StudentList'
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\Main.cpp(17,2): error C2660: 'loadStudentsFromFile': la función no acepta 2 argumentos
   Menus.cpp
   Generando código...
+  ExtraFunctions.obj : se encontró un módulo MSIL; vinculación incremental deshabilitada para MSIL; ejecutando vínculo completo
+  G6_AED_SX32_FinalWork.vcxproj -> M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\x64\Debug\G6_AED_SX32_FinalWork.exe

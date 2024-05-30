@@ -10,8 +10,9 @@ int  ShowMainMenu_();
 int  ShowSubMenuStudent_();
 int  ShowSubMenuTeacher_();
 bool ValidateDataBase_(const string&);
-void trim(string&);
-vector<string> split(const string&, char);
-void loadStudentsFromFile(const string&, StudentList&);
+void Trim_(string&);
+vector<string> Split_(const string&, char);
+void LoadDataBaseToList_(const string&, StudentList&);
+ void SaveStudentFile_(const Student&);
 
 #endif

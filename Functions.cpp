@@ -111,12 +111,3 @@ void BubbleSort_(int* _arr, int _n, bool _order) {
 void WaitKey_() {
 	char c = _getch();
 }
-
-//void ShowQueue(queue<string> _q) {
-//	while (!_q.empty()) {
-//		cout << _q.front() << " ";
-//		_q.pop();
-//	}
-//
-//	cout << endl;
-//}

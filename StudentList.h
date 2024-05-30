@@ -2,12 +2,9 @@
 #ifndef STUDENTLIST_H
 #define STUDENTLIST_H
 
-#include "ExtraFunctions.h"
 #include "Student.h"
 using namespace std;
 using namespace System;
-
-
 
 class StudentList {
 private:
@@ -20,11 +17,9 @@ private:
 
 	Node* head;
 
-
 public:
 	// Constructor para StudentList
 	StudentList() : head(nullptr) {}
-
 
 	// Destructor para liberar memoria
 	~StudentList() {
@@ -36,18 +31,15 @@ public:
 		}
 	}
 
-
 	// Metodo para agregar un estudiante a la lista
-	void addStudent(const Student& student) {
+	void AddStudent_(const Student& student) {
 		Node* newNode = new Node(student);
 		newNode->next = head;
 		head = newNode;
 	}
 
-
-
 	//Metodo para guardar en la base de datos
-	void saveToFile(const Student& _newStudent) {
+	void SaveStudentToFile_(const Student& _newStudent) {
 		ofstream file("StudentsDataBase.txt", ios::app); // Abrir en modo de escritura
 		if (!file.is_open()) {
 			cout << "Error al abrir el archivo." << endl;
@@ -57,9 +49,9 @@ public:
 		Node* current = head;
 		while (current != nullptr) {
 			const Student& student = current->student;
-			file << student.getName() << "," << student.getLastName() << "," << student.getCode() << ",\"";
+			file << student.getName_() << "," << student.getLastName_() << "," << student.getCode_() << ",\"";
 
-			queue<string> tempCourses = student.getCourses();
+			queue<string> tempCourses = student.getCourses_();
 			while (!tempCourses.empty()) {
 				file << tempCourses.front();
 				tempCourses.pop();
@@ -67,7 +59,7 @@ public:
 			}
 			file << "\",\"";
 
-			queue<int> tempScores = student.getScores();
+			queue<int> tempScores = student.getScores_();
 			while (!tempScores.empty()) {
 				file << tempScores.front();
 				tempScores.pop();
@@ -82,10 +74,10 @@ public:
 	}
 
 	// Metodo para buscar un estudiante por código
-	Student* findStudent(const string& code) {
+	Student* FindStudent_(const string& code) {
 		Node* current = head;
 		while (current != nullptr) {
-			if (current->student.getCode() == code) {
+			if (current->student.getCode_() == code) {
 				return &current->student;
 			}
 			current = current->next;
@@ -93,10 +85,11 @@ public:
 		return nullptr;
 	}
 
-	bool findStudent_(const string& _code) {
+	// Metodo para validar un estudiante por código
+	bool ValidateFindStudent_(const string& _code) {
 		Node* current = head;
 		while (current != nullptr) {
-			if (current->student.getCode() == _code) {
+			if (current->student.getCode_() == _code) {
 				return true;
 			}
 			current = current->next;
@@ -104,16 +97,13 @@ public:
 		return false;
 	}
 
-
-
-
 	// Metodo para mostrar todos los estudiantes
-	void displayStudents() {
+	void ShowAllStudents_() {
 		Node* current = head;
 		while (current != nullptr) {
-			cout << "Nombre: " << current->student.getName()
-				<< ", Apellido: " << current->student.getLastName()
-				<< ", Código: " << current->student.getCode() << endl;
+			cout << "Nombre: " << current->student.getName_()
+				<< ", Apellido: " << current->student.getLastName_()
+				<< ", Código: " << current->student.getCode_() << endl;
 			current = current->next;
 		}
 	}
@@ -136,9 +126,9 @@ public:
 		}
 	}
 
-	void addStudent(const Student& _newStudent) {
+	void AddStudent_(const Student& _newStudent) {
 		// Buscar si el estudiante ya existe en la base de datos
-		if (findStudent(_newStudent.getCode()) != nullptr) {
+		if (FindStudent_(_newStudent.getCode_()) != nullptr) {
 			// El estudiante ya existe, actualizar sus cursos
 			updateStudentCourses(_newStudent);
 		}
@@ -149,7 +139,7 @@ public:
 			head = newNode;
 
 			// Agregar el estudiante a la base de datos
-			saveToFile(_newStudent);
+			SaveStudentToFile_(_newStudent);
 		}
 	}
 
@@ -160,13 +150,13 @@ public:
 	void printList() const {
 		Node* current = head;
 		while (current) {
-			cout << "Name: " << current->student.getName() << endl;
-			cout << "Last Name: " << current->student.getLastName() << endl;
-			cout << "Code: " << current->student.getCode() << endl;
+			cout << "Name: " << current->student.getName_() << endl;
+			cout << "Last Name: " << current->student.getLastName_() << endl;
+			cout << "Code: " << current->student.getCode_() << endl;
 			cout << "Courses: ";
-			current->student.printCourses();
+			current->student.PrintCourses_();
 			cout << "Scores: ";
-			queue<int> scores = current->student.getScores();
+			queue<int> scores = current->student.getScores_();
 			while (!scores.empty()) {
 				cout << scores.front() << " ";
 				scores.pop();
@@ -198,10 +188,10 @@ public:
 			getline(ss, scores);
 
 			// Comparar el código del estudiante actual con el nuevo estudiante
-			if (code == _newStudent.getCode()) {
+			if (code == _newStudent.getCode_()) {
 				// Sobrescribir los cursos del estudiante con los cursos del nuevo estudiante
 				tempFile << name << "," << lastName << "," << code << ",\"";
-				queue<string> tempCourses = _newStudent.getCourses();
+				queue<string> tempCourses = _newStudent.getCourses_();
 				while (!tempCourses.empty()) {
 					tempFile << tempCourses.front();
 					tempCourses.pop();
@@ -229,7 +219,7 @@ public:
 		Node* current = head;
 		Node* previous = nullptr;
 
-		while (current != nullptr && current->student.getCode() != code) {
+		while (current != nullptr && current->student.getCode_() != code) {
 			previous = current;
 			current = current->next;
 		}

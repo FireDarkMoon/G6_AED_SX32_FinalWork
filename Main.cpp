@@ -14,7 +14,7 @@ int main() {
 	Settings_();
 
 	StudentList studentList;
-	loadStudentsFromFile("StudentsDataBase.txt", studentList);
+	LoadDataBaseToList_("StudentsDataBase.txt", studentList);
 
 	bool end{ false };
 	int option{ ShowMainMenu_() };
@@ -30,13 +30,11 @@ int main() {
 			string code;
 			cout << "Ingrese su codigo de estudiante: "; cin >> code;
 
-
-
-			if (studentList.findStudent_(code)) {
-				Student* tempStudent = studentList.findStudent(code);
+			if (studentList.ValidateFindStudent_(code)) {
+				Student* tempStudent = studentList.FindStudent_(code);
 				HandleSubMenu1_(studentList, tempStudent, code);
 			}
-			else { 
+			else {
 				cout << "\nEstudiante no encontrado." << endl;
 				WaitKey_();
 			}
@@ -54,19 +52,19 @@ int main() {
 			ClearScreen_();
 
 			string name, lastName, code;
-			cout << "Ingrese el nombre del estudiante: "; cin >> name;
-			cout << "Ingrese el apellido del estudiante: "; cin >> lastName;
-			cout << "Ingrese el código del estudiante: "; cin >> code;
-
 			queue<string> courses; // Cola de cursos vacía
 			queue<int> scores;  // Cola de calificaciones vacía
 
+			cout << "Ingrese el nombre del estudiante: "; cin >> name;
+			cout << "Ingrese el apellido del estudiante: "; cin >> lastName;
+			cout << "Ingrese el código del estudiante: "; cin >> code;
+			courses.push("NULL"); scores.push(NULL);
+
 			Student newStudent(name, lastName, code, courses, scores);
-			studentList.addStudent(newStudent);
+			SaveStudentFile_(newStudent);
 
-			 
-
-				cout << "\nEstudiante agregado correctamente..." << endl;
+			cout << "\nEstudiante agregado correctamente..." << endl;
+			LoadDataBaseToList_("StudentsDataBase.txt", studentList);
 		}
 			  break;
 

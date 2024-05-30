@@ -1,5 +1,6 @@
 #include "Libraries.h"
 #include "Functions.h"
+#include "StudentList.h"
 #include "ExtraFunctions.h"
 
 int ShowMainMenu_() {
@@ -76,97 +77,137 @@ bool ValidateDataBase_(const string& _code) {
 	return false;
 }
 
-void trim(string& str) {
-    size_t start = str.find_first_not_of(' ');
-    size_t end = str.find_last_not_of(' ');
-    str = (start == string::npos) ? "" : str.substr(start, end - start + 1);
+void Trim_(string& str) {
+	size_t start = str.find_first_not_of(' ');
+	size_t end = str.find_last_not_of(' ');
+	str = (start == string::npos) ? "" : str.substr(start, end - start + 1);
 }
 
-vector<string> split(const string& str, char delimiter) {
-    vector<string> tokens;
-    string token;
-    istringstream tokenStream(str);
-    while (getline(tokenStream, token, delimiter)) {
-        tokens.push_back(token);
-    }
-    return tokens;
+vector<string> Split_(const string& str, char delimiter) {
+	vector<string> tokens;
+	string token;
+	istringstream tokenStream(str);
+	while (getline(tokenStream, token, delimiter)) {
+		tokens.push_back(token);
+	}
+	return tokens;
 }
 
-void loadStudentsFromFile(const string& filename, StudentList& studentList) {
-    ifstream file;
-    try {
-        file.open(filename);
-        if (!file.is_open()) {
-            throw runtime_error("No se pudo abrir el archivo!");
-        }
+void LoadDataBaseToList_(const string& filename, StudentList& studentList) {
+	ifstream file;
+	try {
+		file.open(filename);
+		if (!file.is_open()) {
+			throw runtime_error("No se pudo abrir el archivo!");
+		}
 
-        string line;
-        while (getline(file, line)) {
-            stringstream ss(line);
-            string name, lastName, code, coursesStr, scoresStr;
+		string line;
+		while (getline(file, line)) {
+			stringstream ss(line);
+			string name, lastName, code, coursesStr, scoresStr;
 
-            getline(ss, name, ',');
-            getline(ss, lastName, ',');
-            getline(ss, code, ',');
+			getline(ss, name, ',');
+			getline(ss, lastName, ',');
+			getline(ss, code, ',');
 
-            // Leer los cursos y los scores que están entre comillas
-            getline(ss, coursesStr, '"');
-            getline(ss, coursesStr, '"');
-            getline(ss, scoresStr, '"');
-            getline(ss, scoresStr, '"');
+			// Leer los cursos y los scores que están entre comillas
+			getline(ss, coursesStr, '"');
+			getline(ss, coursesStr, '"');
+			getline(ss, scoresStr, '"');
+			getline(ss, scoresStr, '"');
 
-            // Trim leading and trailing spaces
-            trim(name);
-            trim(lastName);
-            trim(code);
-            trim(coursesStr);
-            trim(scoresStr);
+			// Trim_ leading and trailing spaces
+			Trim_(name);
+			Trim_(lastName);
+			Trim_(code);
+			Trim_(coursesStr);
+			Trim_(scoresStr);
 
-            queue<string> courses;
-            queue<int> scores;
+			queue<string> courses;
+			queue<int> scores;
 
-            // Procesar la lista de cursos
-            vector<string> courseList = split(coursesStr, ',');
-            for (const auto& course : courseList) {
-                string trimmedCourse = course;
-                trim(trimmedCourse);
-                if (!trimmedCourse.empty()) {
-                    courses.push(trimmedCourse);
-                }
-            }
+			// Procesar la lista de cursos
+			vector<string> courseList = Split_(coursesStr, ',');
+			for (const auto& course : courseList) {
+				string Trim_medCourse = course;
+				Trim_(Trim_medCourse);
+				if (!Trim_medCourse.empty()) {
+					courses.push(Trim_medCourse);
+				}
+			}
 
-            // Procesar la lista de calificaciones
-            vector<string> scoreList = split(scoresStr, ',');
-            for (const auto& score : scoreList) {
-                string trimmedScore = score;
-                trim(trimmedScore);
-                if (!trimmedScore.empty()) {
-                    try {
-                        scores.push(stoi(trimmedScore));
-                    }
-                    catch (invalid_argument& e) {
-                        cerr << "Error: invalid score '" << trimmedScore << "'" << endl;
-                    }
-                }
-            }
+			// Procesar la lista de calificaciones
+			vector<string> scoreList = Split_(scoresStr, ',');
+			for (const auto& score : scoreList) {
+				string Trim_medScore = score;
+				Trim_(Trim_medScore);
+				if (!Trim_medScore.empty()) {
+					try {
+						scores.push(stoi(Trim_medScore));
+					}
+					catch (invalid_argument& e) {
+						cerr << "Error: invalid score '" << Trim_medScore << "'" << endl;
+					}
+				}
+			}
 
-            // Crear el objeto Student y añadirlo a la lista
-            if (!name.empty() && !lastName.empty() && !code.empty() && !courses.empty() && !scores.empty()) {
-                Student student(name, lastName, code, courses, scores);
-                studentList.addStudent(student);
-            }
-            else {
-                cerr << "Warning: Invalid data line '" << line << "'" << endl;
-            }
-        }
+			// Crear el objeto Student y añadirlo a la lista
+			if (!name.empty() && !lastName.empty() && !code.empty() && !courses.empty() && !scores.empty()) {
+				Student student(name, lastName, code, courses, scores);
+				studentList.AddStudent_(student);
+			}
+			else {
+				cerr << "Warning: Invalid data line '" << line << "'" << endl;
+			}
+		}
 
-        file.close();
-    }
-     
-    catch (const exception& e) {
-        cerr << "Error: " << e.what() << endl;
-        if (file.is_open()) {
-            file.close();
-        }
-    }
+		file.close();
+	}
+
+	catch (const exception& e) {
+		cerr << "Error: " << e.what() << endl;
+		if (file.is_open()) {
+			file.close();
+		}
+	}
+}
+
+//static void AddNewStudent_(const string& name, const string& lastName, const string& code, const vector<string>& courses) {
+void SaveStudentFile_(const Student& _tempStudent) {
+	// Abrir el archivo en modo de escritura al final
+	ofstream file("StudentsDataBase.txt", ios::app);
+
+	if (!file.is_open()) {
+		cout << "Error al abrir el archivo." << endl;
+		WaitKey_();
+		return;
+	}
+
+	// Escribir los datos del nuevo Student en el archivo
+	file << _tempStudent.getName_() << "," << _tempStudent.getLastName_() << "," << _tempStudent.getCode_() << ",\"";
+	
+	// Escribir los cursos
+	queue<string> tempCourses = _tempStudent.getCourses_();  // Hacer una copia de la cola
+	while (!tempCourses.empty()) {
+		file << tempCourses.front();
+		tempCourses.pop();
+		if (!tempCourses.empty())
+			file << ",";
+	}
+	file << "\",\"";
+
+	// Escribir las calificaciones
+	queue<int> tempScores = _tempStudent.getScores_();  // Hacer una copia de la cola
+	while (!tempScores.empty()) {
+		file << tempScores.front();
+		tempScores.pop();
+		if (!tempScores.empty())
+			file << ",";
+	}
+	file << "\"\n";
+
+	file.close();
+
+	cout << "\nNuevo estudiante agregado correctamente." << endl;
+	WaitKey_();
 }

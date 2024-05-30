@@ -6,7 +6,7 @@
 
 void HandleSubMenu1_(StudentList& _studentList, Student* _tempStudent, const string& _code) {
 	ClearScreen_();
-	cout << "[]=== BIENVENIDO " << _tempStudent->getName() << " " << _tempStudent->getLastName() << " EXPLORA TUS OPCIONES ===[]" << endl;
+	cout << "[]=== BIENVENIDO " << _tempStudent->getName_() << " " << _tempStudent->getLastName_() << " EXPLORA TUS OPCIONES ===[]" << endl;
 	int option{ ShowSubMenuStudent_() };
 
 	bool end{ false };
@@ -17,7 +17,7 @@ void HandleSubMenu1_(StudentList& _studentList, Student* _tempStudent, const str
 		case 1: {
 			ClearScreen_();
 			execute = true;
-			_tempStudent->printCourses();
+			_tempStudent->PrintCourses_();
 			WaitKey_();
 
 
@@ -30,6 +30,16 @@ void HandleSubMenu1_(StudentList& _studentList, Student* _tempStudent, const str
 			  break;
 
 		case 3: {
+
+
+
+
+			/*
+						  //ESPACIO
+						  //ESPACIO
+						  //ESPACIO
+						  //ESPACIO
+						  //ESPACIO
 			execute = true;
 			string course;
 			int courseNumber{ 1 };
@@ -44,10 +54,11 @@ void HandleSubMenu1_(StudentList& _studentList, Student* _tempStudent, const str
 			}
 
 			// Agregar el estudiante a la lista y actualizar la base de datos
-			_studentList.addStudent(*_tempStudent);
+			_studentList.AddStudent_(*_tempStudent);
 
 			cout << "Cursos agregados correctamente." << endl;
 			WaitKey_();
+		  */
 		}
 			  break;
 
@@ -84,7 +95,7 @@ void HandleSubMenu1_(StudentList& _studentList, Student* _tempStudent, const str
 
 		ClearScreen_();
 		if (execute) {
-			cout << "[]=== BIENVENIDO " << _tempStudent->getName() << " " << _tempStudent->getLastName() << " EXPLORA TUS OPCIONES ===[]" << endl;
+			cout << "[]=== BIENVENIDO " << _tempStudent->getName_() << " " << _tempStudent->getLastName_() << " EXPLORA TUS OPCIONES ===[]" << endl;
 			option = ShowSubMenuStudent_();
 		}
 
