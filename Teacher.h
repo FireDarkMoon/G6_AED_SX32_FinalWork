@@ -2,21 +2,26 @@
 #ifndef TEACHER_H
 #define TEACHER_H
 
+#include "Body.h"
 using namespace std;
 using namespace System;
 
-class Teacher {
+class Teacher :public Body {
 private:
-	string name;
-	string lastName;
-	string code;
-	queue<string> courses;
+	// Atributes
 
 public:
-	Teacher(string _name, string _lastName, string _code, queue<string> _courses) :
-		name(_name), lastName(_lastName), code(_code), courses(_courses) {}
+	// Default Constructor
+	Teacher() :Body() {}
 
+	// Parameterized Constructor
+	Teacher(const string& _name, const string& _lastName, const string& _code, const queue<string>& _courses) :
+		Body(_name, _lastName, _code, _courses) {}
 
+	// Destructor
+	virtual ~Teacher(){}
+
+	// Methods
 
 };
 

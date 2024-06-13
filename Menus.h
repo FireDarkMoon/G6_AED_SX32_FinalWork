@@ -5,7 +5,10 @@
 using namespace  std;
 using namespace  System;
 
-void HandleSubMenu1_(StudentList&, Student*, const string&);
-void HandleSubMenu2_();
-void HandleSubMenu3_();
+int  ShowMainMenu_();
+int  ShowSubMenuStudent_();
+int  ShowSubMenuTeacher_();
+void CallSubMenu1_( Student*);
+void CallSubMenu2_(Teacher*);
+
 #endif

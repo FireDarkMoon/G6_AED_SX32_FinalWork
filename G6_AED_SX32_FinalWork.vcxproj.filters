@@ -53,18 +53,24 @@
     <ClInclude Include="Menus.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Header.h">
+    <ClInclude Include="Body.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="StudentList.h">
+    <ClInclude Include="List.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Header1.h">
+    <ClInclude Include="Node.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="StudentsDataBase.txt">
+      <Filter>Archivos de recursos</Filter>
+    </Text>
+    <Text Include="CoursesDataBase.txt">
+      <Filter>Archivos de recursos</Filter>
+    </Text>
+    <Text Include="TeachersDataBase.txt">
       <Filter>Archivos de recursos</Filter>
     </Text>
   </ItemGroup>

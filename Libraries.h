@@ -30,9 +30,13 @@
 // Bibliotecas para manipulación de la consola y el sistema en entornos Windows
 #include <conio.h>      // For console manipulation functions
 #include <Windows.h>    // For window and console handling functions
+#include <windows.h>    // For 
 
 // Bibliotecas para manipulación de caracteres anchos
 #include <wchar.h>      // For wide character manipulation
+
+
 #include <stdexcept>
+#include <functional>
 
 #endif

@@ -1,11 +1,11 @@
 #include "Libraries.h"
 #include "Defines.h"
 #include "EnumsConstants.h"
-#include "Student.h"
-#include "StudentList.h"
-#include "Teacher.h"
 #include "Functions.h"
 #include "ExtraFunctions.h"
+#include "List.h"
+#include "Student.h"
+#include "Teacher.h"
 #include "Menus.h"
 using namespace std;
 using namespace System;
@@ -13,8 +13,8 @@ using namespace System;
 int main() {
 	Settings_();
 
-	StudentList studentList;
-	LoadDataBaseToList_("StudentsDataBase.txt", studentList);
+	List<Student*>* studentList = LoadStudentsDataBaseToList_();
+	List<Teacher*>* teacherList = LoadTeachersDataBaseToList_();
 
 	bool end{ false };
 	int option{ ShowMainMenu_() };
@@ -25,50 +25,80 @@ int main() {
 		switch (option) {
 		case 1: {
 			ClearScreen_();
-			execute = true;
 
 			string code;
-			cout << "Ingrese su codigo de estudiante: "; cin >> code;
+			cout << "\nIngrese su codigo de estudiante: "; cin >> code;
 
-			if (studentList.ValidateFindStudent_(code)) {
-				Student* tempStudent = studentList.FindStudent_(code);
-				HandleSubMenu1_(studentList, tempStudent, code);
-			}
+			Student* foundStudent = studentList->Search_(code);
+
+			if (foundStudent != nullptr)
+				CallSubMenu1_(foundStudent);
 			else {
-				cout << "\nEstudiante no encontrado." << endl;
+				cout << "\nERROR ESTUDIANTE NO ENCONTRADO" << endl;
 				WaitKey_();
 			}
+
+			execute = true;
 		}
 			  break;
 
 		case 2: {
+			ClearScreen_();
+
+			string code;
+			cout << "\nIngrese su codigo de maestro: "; cin >> code;
+
+			Teacher* foundTeacher = teacherList->Search_(code);
+
+			if (foundTeacher != nullptr)
+				CallSubMenu2_(foundTeacher);
+			else {
+				cout << "\nERROR MAESTRO NO ENCONTRADO" << endl;
+				WaitKey_();
+			}
+
 			execute = true;
-			HandleSubMenu2_();
 		}
 			  break;
 
 		case 3: {
-			execute = true;
 			ClearScreen_();
 
 			string name, lastName, code;
-			queue<string> courses; // Cola de cursos vacía
-			queue<int> scores;  // Cola de calificaciones vacía
-
-			cout << "Ingrese el nombre del estudiante: "; cin >> name;
+			cout << "\nIngrese el nombre del estudiante: "; cin >> name;
 			cout << "Ingrese el apellido del estudiante: "; cin >> lastName;
 			cout << "Ingrese el código del estudiante: "; cin >> code;
-			courses.push("NULL"); scores.push(NULL);
 
-			Student newStudent(name, lastName, code, courses, scores);
-			SaveStudentFile_(newStudent);
+			string courses{ "NULL" };
+			int scores{ -2 };
 
-			cout << "\nEstudiante agregado correctamente..." << endl;
-			LoadDataBaseToList_("StudentsDataBase.txt", studentList);
+			ofstream file("StudentsDataBase.txt", ios::app);
+			file << name << "," << lastName << "," << code << ",\"" << courses << "\",\"" << scores << "\"" << endl;
+
+			cout << "\nNuevo estudiante agregado correctamente." << endl;
+
+			execute = true;
+			WaitKey_();
 		}
 			  break;
 
 		case 4: {
+			ClearScreen_();
+
+			string name, lastName, code;
+			cout << "\nIngrese el nombre del maestro: "; cin >> name;
+			cout << "Ingrese el apellido del maestro: "; cin >> lastName;
+			cout << "Ingrese el codigo del maestro: "; cin >> code;
+			string  courses = EnterCourses_('T');
+
+
+			ofstream file("TeachersDataBase.txt", ios::app);
+			file << name << "," << lastName << "," << code << ",\"" << courses << "\"" << endl;
+
+			cout << "\nNuevo maestro agregado correctamente." << endl;
+
+			execute = true;
+			WaitKey_();
 		}
 			  break;
 
@@ -88,12 +118,15 @@ int main() {
 		}
 
 		ClearScreen_();
+
+		studentList = LoadStudentsDataBaseToList_();
+		teacherList = LoadTeachersDataBaseToList_();
 		if (execute) option = ShowMainMenu_();
 	} while (!end);
 
 	ClearScreen_();
 	cout << "\n ¡Hasta luego!" << endl;
 
-	char c = _getch();
+	WaitKey_();
 	return 0;
 }

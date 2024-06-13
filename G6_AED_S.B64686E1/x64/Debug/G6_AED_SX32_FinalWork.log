@@ -1,42 +1,37 @@
 ﻿  ExtraFunctions.cpp
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\ExtraFunctions.cpp(148,31): warning C4101: 'e': variable local sin referencia
-  Functions.cpp
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\Functions.cpp(5,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\Functions.cpp(108,2): warning C4809: la instrucción switch tiene una etiqueta 'default' redundante; se proporcionan todas las etiquetas 'case' posibles
-  Main.cpp
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(9,21): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(18,22): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(19,22): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(22,22): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(23,22): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(24,22): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(25,22): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(26,21): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(27,21): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(28,20): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(31,21): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(32,22): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(33,22): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(34,22): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(35,22): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(36,22): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(37,22): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(38,21): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(39,20): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(40,22): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(41,22): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(44,23): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(45,22): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(46,23): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(47,23): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(48,23): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(49,23): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(50,23): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(51,23): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(52,23): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(53,23): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(54,21): warning C4309: 'inicializando': truncamiento de valor constante
-  Menus.cpp
-  Generando código...
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(9,21): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(18,22): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(19,22): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(22,22): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(23,22): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(24,22): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(25,22): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(26,21): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(27,21): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(28,20): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(31,21): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(32,22): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(33,22): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(34,22): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(35,22): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(36,22): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(37,22): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(38,21): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(39,20): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(40,22): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(41,22): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(44,23): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(45,22): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(46,23): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(47,23): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(48,23): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(49,23): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(50,23): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(51,23): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(52,23): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(53,23): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(54,21): warning C4309: 'inicializando': truncamiento de valor constante
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\ExtraFunctions.cpp(175,25): warning C4267: 'argumento': conversión de 'size_t' a 'int'; posible pérdida de datos
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\List.h(124,23): warning C4018: '<': no coinciden signed/unsigned
   ExtraFunctions.obj : se encontró un módulo MSIL; vinculación incremental deshabilitada para MSIL; ejecutando vínculo completo
-  G6_AED_SX32_FinalWork.vcxproj -> M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\x64\Debug\G6_AED_SX32_FinalWork.exe
+  G6_AED_SX32_FinalWork.vcxproj -> M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\x64\Debug\G6_AED_SX32_FinalWork.exe

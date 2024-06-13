@@ -2,3 +2,7 @@ M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_A
 M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\G6_AED_S.B64686E1\x64\Debug\G6_AED_SX32_FinalWork.vcxproj.MdMergeInputs.cache
 M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\G6_AED_S.B64686E1\x64\Debug\G6_AED_SX32_FinalWork.vcxproj.cppwinrt_plat.cache
 M:\Users\giuse\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\G6_AED_S.B64686E1\x64\Debug\G6_AED_SX32_FinalWork.vcxproj.cppwinrt_comp.cache
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\G6_AED_S.B64686E1\x64\Debug\G6_AED_SX32_FinalWork.vcxproj.AssemblyReference.cache
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\G6_AED_S.B64686E1\x64\Debug\G6_AED_SX32_FinalWork.vcxproj.MdMergeInputs.cache
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\G6_AED_S.B64686E1\x64\Debug\G6_AED_SX32_FinalWork.vcxproj.cppwinrt_plat.cache
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\G6_AED_S.B64686E1\x64\Debug\G6_AED_SX32_FinalWork.vcxproj.cppwinrt_comp.cache

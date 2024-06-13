@@ -2,41 +2,36 @@
 #ifndef STUDENT_H
 #define STUDENT_H
 
+#include "Body.h"
 using namespace std;
 using namespace System;
 
-class Student {
+class Student :public Body {
 private:
-	string name;
-	string lastName;
-	string code;
-	queue<string> courses;
+	// Atributes
 	queue<int> scores;
 
 public:
-	Student(string _name, string _lastName, string _code, queue<string> _courses, queue<int> _scores) :
-		name(_name), lastName(_lastName), code(_code), courses(_courses), scores(_scores) {}
+	// Default Constructor
+	Student() :Body() {}
 
-	void AddCourse_(const string& _course) { courses.push(_course); }
-	void AddScore_(const int& _score) { scores.push(_score); }
+	// Parameterized Constructor
+	Student(const string& _name, const string& _lastName, const string& _code, const queue<string>& _courses, const queue<int>& _scores) :
+		Body(_name, _lastName, _code, _courses), scores(_scores) {}
 
-	void PrintCourses_() const {
-		queue<string> tempCourses = courses;
+	// Destructor
+	virtual ~Student() {}
 
-		while (!tempCourses.empty()) {
-			cout << tempCourses.front() << " ";
-			tempCourses.pop();
-		}
+	// Setters
+	void setScores_(queue<int>& _scores) { scores = _scores; }
 
-		cout << endl;
-	}
-
-	// Métodos para acceder y modificar los datos del estudiante
-	string getName_() const { return name; }
-	string getLastName_() const { return lastName; }
-	string getCode_() const { return code; }
-	queue<string> getCourses_() const { return courses; }
+	// Getters
 	queue<int> getScores_() const { return scores; }
+
+	// Methods
+	void AddScore_(const int& _score) {
+		scores.push(_score);
+	}
 };
 
 #endif

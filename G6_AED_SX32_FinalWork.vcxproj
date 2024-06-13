@@ -118,20 +118,22 @@
     <ClCompile Include="Menus.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Body.h" />
     <ClInclude Include="Defines.h" />
     <ClInclude Include="EnumsConstants.h" />
     <ClInclude Include="ExtraFunctions.h" />
     <ClInclude Include="Functions.h" />
-    <ClInclude Include="Header.h" />
-    <ClInclude Include="Header1.h" />
     <ClInclude Include="Libraries.h" />
+    <ClInclude Include="List.h" />
     <ClInclude Include="Menus.h" />
+    <ClInclude Include="Node.h" />
     <ClInclude Include="Student.h" />
-    <ClInclude Include="StudentList.h" />
     <ClInclude Include="Teacher.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="CoursesDataBase.txt" />
     <Text Include="StudentsDataBase.txt" />
+    <Text Include="TeachersDataBase.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
