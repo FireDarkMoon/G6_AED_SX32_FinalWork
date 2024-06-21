@@ -22,5 +22,6 @@ bool PrimeNumber_(int);
 void ShowBubble_(int*, int);
 void BubbleSort_(int*, int, bool);
 void WaitKey_();
-//void ShowQueue_(queue<string>);
+void DrawTable_(int, int, int, int, int, int, int);
+
 #endif

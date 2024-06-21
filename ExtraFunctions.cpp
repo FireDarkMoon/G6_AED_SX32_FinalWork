@@ -96,73 +96,11 @@ List<Teacher*>* LoadTeachersDataBaseToList_() {
 	return teacherList;
 }
 
-void AddCoursesFile_(string _codeStudent, string _newCourse) {
-	string fileName = "StudentsDataBase.txt";
-	ifstream dataBase(fileName);
-	ofstream tempDataBase("Temp.txt");
-
-	if (!dataBase.is_open()) {
-		cout << "ERROR AL ABRIR EL ARCHIVO: " << fileName << endl;
-		WaitKey_();
-	}
-
-	string line;
-	while (getline(dataBase, line)) {
-		istringstream ss(line);
-		string nameSS, lastNameSS, codeSS, coursesSS, scoresSS;
-
-		getline(ss, nameSS, ',');
-		getline(ss, lastNameSS, ',');
-		getline(ss, codeSS, ',');
-		getline(ss, coursesSS, '"');
-		getline(ss, coursesSS, '"');
-		getline(ss, scoresSS, '"');
-		getline(ss, scoresSS, '"');
-
-		if (codeSS == _codeStudent) {
-			if (coursesSS == "NULL") {
-				coursesSS = "";
-				coursesSS += _newCourse;
-			}
-			else
-				coursesSS += "," + _newCourse;
-		}
-
-		tempDataBase << nameSS << "," << lastNameSS << "," << codeSS << ",\"" << coursesSS << "\",\"" << scoresSS << "\"" << endl;
-	}
-
-	dataBase.close();
-	tempDataBase.close();
-
-	remove(fileName.c_str());
-	rename("Temp.txt", fileName.c_str());
-}
-
-bool ValidateCourse_(const string& _course) {
-	if (_course == "fin") return true;
-
-	string fileName{ "CoursesDataBase.txt" };
-	ifstream dataBase(fileName);
-
-	if (!dataBase.is_open()) {
-		ClearScreen_();
-		cout << "\nERROR AL ABRIR EL ARCHIVO: \"" << fileName << "\"" << endl;
-		WaitKey_();
-		return false;
-	}
-
-	string course;
-	while (getline(dataBase, course))
-		if (course == _course)
-			return true;
-
-	return false;
-}
-
-string EnterCourses_(char _c) {
+queue<string> EnterCoursesScores_(char _c) {
 	int index = 1;
 	int j = 0;
 	int default = (_c == 'T') ? 4 : ((_c == 'S') ? 1 : 0);
+	int counter = 0;
 
 	string course, courses;
 	cout << "Ingrese los cursos ('fin' para terminar):" << endl;
@@ -188,8 +126,297 @@ string EnterCourses_(char _c) {
 		}
 
 		index++;
+		counter++;
 		courses += course + ",";
 	}
 
-	return courses;
+	queue<string> tempCoursesScores;
+	tempCoursesScores.push(courses);
+
+	if (_c == 'S') {
+		string scores;
+		for (int i = 0; i < counter; i++) {
+			if (i == counter - 1) scores += "-1";
+			else scores += "-1,";
+		}
+
+		tempCoursesScores.push(scores);
+	}
+
+	return tempCoursesScores;
+}
+
+bool ValidateCourse_(const string& _course) {
+	if (_course == "fin") return true;
+
+	string fileName{ "CoursesDataBase.txt" };
+	ifstream dataBase(fileName);
+
+	if (!dataBase.is_open()) {
+		ClearScreen_();
+		cout << "\nERROR AL ABRIR EL ARCHIVO: \"" << fileName << "\"" << endl;
+		WaitKey_();
+		return false;
+	}
+
+
+	string line;
+	while (getline(dataBase, line)) {
+		istringstream ss(line);
+
+		string courseSS, daysSS, hoursSS;
+		getline(ss, courseSS, ',');
+		getline(ss, daysSS, '"');
+		getline(ss, daysSS, '"');
+		getline(ss, hoursSS, '"');
+		getline(ss, hoursSS, '"');
+
+		if (courseSS == _course)
+			return true;
+	}
+
+	return false;
+}
+
+void AddCoursesFile_(string _codeStudent, string _newCourse, string _newScore) {
+	string fileName = "StudentsDataBase.txt";
+	ifstream dataBase(fileName);
+	ofstream tempDataBase("Temp.txt");
+
+	if (!dataBase.is_open()) {
+		cout << "ERROR AL ABRIR EL ARCHIVO: " << fileName << endl;
+		WaitKey_();
+	}
+
+	string line;
+	while (getline(dataBase, line)) {
+		istringstream ss(line);
+		string nameSS, lastNameSS, codeSS, coursesSS, scoresSS;
+
+		getline(ss, nameSS, ',');
+		getline(ss, lastNameSS, ',');
+		getline(ss, codeSS, ',');
+		getline(ss, coursesSS, '"');
+		getline(ss, coursesSS, '"');
+		getline(ss, scoresSS, '"');
+		getline(ss, scoresSS, '"');
+
+		if (codeSS == _codeStudent) {
+			if (coursesSS == "NULL" || scoresSS == "-2") {
+				coursesSS = "";
+				coursesSS += _newCourse;
+
+				scoresSS = "";
+				scoresSS += _newScore;
+			}
+			else {
+				coursesSS += "," + _newCourse;
+				scoresSS += "," + _newScore;
+			}
+		}
+
+		tempDataBase << nameSS << "," << lastNameSS << "," << codeSS << ",\"" << coursesSS << "\",\"" << scoresSS << "\"" << endl;
+	}
+
+	dataBase.close();
+	tempDataBase.close();
+
+	remove(fileName.c_str());
+	rename("Temp.txt", fileName.c_str());
+}
+
+void ShowSchedule_() {
+	int numCellsHorizontal = 7;
+	int numCellsVertical = 17;
+	int cellWidth = 13;
+	int cellHeight = 1;
+	int cellWidthWithBorder = cellWidth + 1;
+	int cellHeightWithBorder = cellHeight + 1;
+	int tableWidth = numCellsHorizontal * cellWidthWithBorder + 1;
+	int tableHeight = numCellsVertical * cellHeightWithBorder + 1;
+	int x = 2;
+	int y = 2;
+	int color = DarkGreen;
+
+	DrawTable_(numCellsHorizontal, numCellsVertical, cellWidth, cellHeight, color, x, y);
+
+	int start = 7;
+	int end = start + 1;
+	int day = 1;
+
+	for (int j = 0; j < tableWidth; j++) {
+		for (int i = 0; i < tableHeight; i++) {
+			if (i > 2 && i % 2 != 0 && j == 1) {
+				string hourRange =
+					(start < 9) ? "0" + to_string(start) + ":00-0" + to_string(end) + ":00" :
+					(start == 9) ? "0" + to_string(start) + ":00-" + to_string(end) + ":00" :
+					to_string(start) + ":00-" + to_string(end) + ":00";
+
+				FontColor_(DarkRed);
+				ShowString_(j + 2 * x + 1, i + y, hourRange);
+
+				start++;
+				end++;
+			}
+
+			if (j > 14 && (j - 1) % 14 == 0 && i == 1) {
+				string days =
+					(day == 1) ? "    Lunes" :
+					(day == 2) ? "   Martes" :
+					(day == 3) ? "  Miercoles" :
+					(day == 4) ? "   Jueves" :
+					(day == 5) ? "   Viernes" :
+					"   Sabado";
+
+				FontColor_(DarkBlue);
+				ShowString_(j + 2 * x, i + y, days);
+
+				day++;
+			}
+		}
+	}
+
+	FontColor_(White);
+
+	string course = "";
+	string M[16][6] = { "" };
+	for (int k = 0; k < 16; k++) {
+		for (int p = 0; p < 6; p++) {
+			M[k][p] = "(" + to_string(k + 1) + "," + to_string(p + 1) + ")";
+
+			if (
+				M[k][p] == "(2,1)" ||
+				M[k][p] == "(3,1)" ||
+				M[k][p] == "(5,5)" ||
+				M[k][p] == "(6,5)" ||
+				M[k][p] == "(16,3)"
+				) course = "Algebra";
+			else if (
+				M[k][p] == "(1,6)" ||
+				M[k][p] == "(2,6)" ||
+				M[k][p] == "(5,3)" ||
+				M[k][p] == "(6,3)"
+				) course = "Geometria";
+			else if (
+				M[k][p] == "(3,2)" ||
+				M[k][p] == "(4,6)" ||
+				M[k][p] == "(5,6)" ||
+				M[k][p] == "(8,4)" ||
+				M[k][p] == "(9,4)"
+				) course = "Trigo";
+			else if (
+				M[k][p] == "(4,1)" ||
+				M[k][p] == "(6,6)" ||
+				M[k][p] == "(9,5)" ||
+				M[k][p] == "(10,5)"
+				) course = "Aritmetica";
+			else if (
+				M[k][p] == "(7,1)" ||
+				M[k][p] == "(10,3)"
+				) course = "Estadistica";
+			else if (
+				M[k][p] == "(1,4)" ||
+				M[k][p] == "(2,4)" ||
+				M[k][p] == "(4,2)" ||
+				M[k][p] == "(5,2)"
+				) course = "RazLogico";
+			else if (
+				M[k][p] == "(5,1)" ||
+				M[k][p] == "(11,5)"
+				) course = "RazMate";
+			else if (
+				M[k][p] == "(6,2)" ||
+				M[k][p] == "(7,2)" ||
+				M[k][p] == "(12,4)" ||
+				M[k][p] == "(13,4)"
+				) course = "Fisica";
+			else if (
+				M[k][p] == "(2,3)" ||
+				M[k][p] == "(3,3)" ||
+				M[k][p] == "(8,6)" ||
+				M[k][p] == "(9,6)"
+				) course = "Quimica";
+			else if (
+				M[k][p] == "(10,6)" ||
+				M[k][p] == "(11,6)" ||
+				M[k][p] == "(12,2)" ||
+				M[k][p] == "(13,2)" ||
+				M[k][p] == "(14,4)"
+				) course = "Biologia";
+			else if (
+				M[k][p] == "(6,1)" ||
+				M[k][p] == "(14,6)" ||
+				M[k][p] == "(15,6)" ||
+				M[k][p] == "(16,6)"
+				) course = "Lenguaje";
+			else if (
+				M[k][p] == "(1,2)" ||
+				M[k][p] == "(2,2)" ||
+				M[k][p] == "(13,5)" ||
+				M[k][p] == "(14,5)"
+				) course = "Literatura";
+			else if (
+				M[k][p] == "(1,3)" ||
+				M[k][p] == "(13,1)" ||
+				M[k][p] == "(14,1)"
+				) course = "RazVerbal";
+			else if (
+				M[k][p] == "(10,4)" ||
+				M[k][p] == "(11,4)" ||
+				M[k][p] == "(14,2)" ||
+				M[k][p] == "(15,5)" ||
+				M[k][p] == "(16,5)"
+				) course = "Economia";
+			else if (
+				M[k][p] == "(1,1)" ||
+				M[k][p] == "(12,6)" ||
+				M[k][p] == "(13,6)"
+				) course = "DPCC";
+			else if (
+				M[k][p] == "(8,2)" ||
+				M[k][p] == "(9,2)" ||
+				M[k][p] == "(13,3)" ||
+				M[k][p] == "(14,3)"
+				) course = "Historia";
+			else if (
+				M[k][p] == "(11,1)" ||
+				M[k][p] == "(15,4)"
+				) course = "Geografia";
+			else if (
+				M[k][p] == "(4,4)" ||
+				M[k][p] == "(5,4)" ||
+				M[k][p] == "(15,2)"
+				) course = "Filosofia";
+			else if (
+				M[k][p] == "(7,5)" ||
+				M[k][p] == "(8,5)" ||
+				M[k][p] == "(9,1)" ||
+				M[k][p] == "(10,1)"
+				) course = "Psicologia";
+			else if (
+				M[k][p] == "(2,5)" ||
+				M[k][p] == "(3,5)" ||
+				M[k][p] == "(8,3)" ||
+				M[k][p] == "(16,1)"
+				) course = "Ingles";
+			else {
+				course = "SINCURSO";
+			}
+
+			M[k][p] = course;
+
+
+		}
+	}
+
+
+	for (int i = 0; i < 16; i++) {
+		for (int j = 0; j < 6; j++) {
+			string cell = M[i][j];
+			ShowString_(2 * x + (cellWidthWithBorder * (j + 1) + 1), y + (cellHeightWithBorder * (i + 1)) + 1, cell);
+		}
+	}
+
+
+
 }

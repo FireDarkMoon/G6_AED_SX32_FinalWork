@@ -58,6 +58,10 @@ public:
 
 		cout << endl;
 	}
+
+	void ShowInfo_() const {
+		cout << name << " " << lastName << "_" << code;
+	}
 };
 
 #endif

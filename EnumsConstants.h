@@ -54,7 +54,7 @@ const char CharHDLC = 205;			// Horizontal Double Line Character
 const char CharDC = 206;				// Double Cross Character
 
 // Enumeracion para colores de consola
-enum ConsoleColor {
+enum MyConsoleColor {
 	Black,
 	DarkBlue,
 	DarkGreen,

@@ -32,6 +32,31 @@ public:
 	void AddScore_(const int& _score) {
 		scores.push(_score);
 	}
+
+	void PrintScores_() const {
+		queue<string> tempCourses = getCourses_();
+		queue<int> tempScores = scores;
+
+		if (tempCourses.front() == "NULL")
+			cout << "No esta inscrito en ningun curso" << endl;
+		else {
+			cout << "Sus notas son: " << endl;
+
+			int index{ 1 };
+			while (!(tempCourses.empty() && tempScores.empty())) {
+				if (tempScores.front() == -1)
+					cout << " (" << index++ << ") " << tempCourses.front() << ": NOTA NO REGISTRADA" << endl;
+				else
+					cout << " (" << index++ << ") " << tempCourses.front() << ": " << tempScores.front() << endl;
+
+				tempCourses.pop();
+				tempScores.pop();
+			}
+		}
+
+		cout << endl;
+	}
+
 };
 
 #endif

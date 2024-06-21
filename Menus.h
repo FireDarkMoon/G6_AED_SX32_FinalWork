@@ -8,7 +8,10 @@ using namespace  System;
 int  ShowMainMenu_();
 int  ShowSubMenuStudent_();
 int  ShowSubMenuTeacher_();
-void CallSubMenu1_( Student*);
-void CallSubMenu2_(Teacher*);
+string ShowSubMenuStudentsByCourse_(Teacher*);
+void CallSubMenuStudent_(Student*);
+void CallSubMenuTeacher_(Teacher*);
+void CallSubMenuStudentsByCourse_(string);
+
 
 #endif

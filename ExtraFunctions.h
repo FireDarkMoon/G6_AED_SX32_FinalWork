@@ -10,7 +10,9 @@ using namespace System;
 
 List<Student*>* LoadStudentsDataBaseToList_();
 List<Teacher*>* LoadTeachersDataBaseToList_();
-void AddCoursesFile_(string, string);
+void AddCoursesFile_(string, string, string);
 bool ValidateCourse_(const string&);
-string EnterCourses_(char);
+queue<string> EnterCoursesScores_(char);
+void ShowSchedule_();
+
 #endif

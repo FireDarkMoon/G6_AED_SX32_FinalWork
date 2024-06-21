@@ -1,2 +1,3 @@
-Giusephi,Carlos,u202224867,"NULL","-2"
-Diego,Blond,u222,"Algebra","-2"
+Giusephi,Carlos,u202224867,"Algebra,Historia,Ingles,Geometria","-1,-1,-1,-1"
+Diego,Blond,u222,"Algebra,Ingles","-1,-1"
+A,A,ASDAS,"Algebra,Ingles","-1,-1"

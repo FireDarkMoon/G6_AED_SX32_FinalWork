@@ -32,7 +32,7 @@ int main() {
 			Student* foundStudent = studentList->Search_(code);
 
 			if (foundStudent != nullptr)
-				CallSubMenu1_(foundStudent);
+				CallSubMenuStudent_(foundStudent);
 			else {
 				cout << "\nERROR ESTUDIANTE NO ENCONTRADO" << endl;
 				WaitKey_();
@@ -51,7 +51,7 @@ int main() {
 			Teacher* foundTeacher = teacherList->Search_(code);
 
 			if (foundTeacher != nullptr)
-				CallSubMenu2_(foundTeacher);
+				CallSubMenuTeacher_(foundTeacher);
 			else {
 				cout << "\nERROR MAESTRO NO ENCONTRADO" << endl;
 				WaitKey_();
@@ -89,8 +89,9 @@ int main() {
 			cout << "\nIngrese el nombre del maestro: "; cin >> name;
 			cout << "Ingrese el apellido del maestro: "; cin >> lastName;
 			cout << "Ingrese el codigo del maestro: "; cin >> code;
-			string  courses = EnterCourses_('T');
 
+			queue<string> tempCoursesScores = EnterCoursesScores_('T');
+			string  courses = tempCoursesScores.front();
 
 			ofstream file("TeachersDataBase.txt", ios::app);
 			file << name << "," << lastName << "," << code << ",\"" << courses << "\"" << endl;

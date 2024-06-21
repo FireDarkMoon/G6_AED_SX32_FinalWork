@@ -81,6 +81,25 @@ public:
 		return nullptr; // Retornar nullptr si no se encuentra el elemento
 	}
 
+	List<T>* SearchCourses_(const string& _course) const {
+		List<T>* resultList = new List<T>();
+		Node<T>* auxNode = initial;
+
+		while (auxNode != nullptr) {
+			queue<string> temp = auxNode->getElement_()->getCourses_();
+			while (!temp.empty()) {
+				if (temp.front() == _course) {
+					resultList->AddFinal_(auxNode->getElement_());
+					break; // No necesitamos seguir revisando cursos de este estudiante
+				}
+				temp.pop();
+			}
+			auxNode = auxNode->getNext_();
+		}
+
+		return resultList;
+	}
+
 	T SearchInitial_() const {
 		return SearchPosition_(0);
 	}
