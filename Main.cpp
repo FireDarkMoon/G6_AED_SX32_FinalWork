@@ -85,16 +85,37 @@ int main() {
 		case 4: {
 			ClearScreen_();
 
-			string name, lastName, code;
+			string name, lastName, code, course;
 			cout << "\nIngrese el nombre del maestro: "; cin >> name;
 			cout << "Ingrese el apellido del maestro: "; cin >> lastName;
 			cout << "Ingrese el codigo del maestro: "; cin >> code;
+			cout << "Ingrese el curso del maestro: "; cin >> course;
 
-			queue<string> tempCoursesScores = EnterCoursesScores_('T');
-			string  courses = tempCoursesScores.front();
+			int j = 0;
+			int default = 4;
+
+			if (!ValidateCourse_(course)) {
+				do {
+					cout << endl;
+					if (j == 0) {
+						ShowStringColor_(30, default + j, course, DarkRed);
+						ShowStringColor_(30 + course.size(), default + j, " ERROR CURSO NO ENCONTRADO", DarkRed);
+					}
+					else {
+						ShowStringColor_(1, default + j, "(x)", DarkRed);
+						ShowStringColor_(10 + course.size(), default + j, "ERROR CURSO NO ENCONTRADO", DarkRed);
+					}
+
+					j++;
+					ShowStringColor_(0, default + j, " (i) ", White); cin >> course;
+				} while (!ValidateCourse_(course));
+
+				cout << endl;
+				j++;
+			}
 
 			ofstream file("TeachersDataBase.txt", ios::app);
-			file << name << "," << lastName << "," << code << ",\"" << courses << "\"" << endl;
+			file << name << "," << lastName << "," << code << ",\"" << course << "\"" << endl;
 
 			cout << "\nNuevo maestro agregado correctamente." << endl;
 

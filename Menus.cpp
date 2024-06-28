@@ -26,13 +26,11 @@ int ShowSubMenuStudent_() {
 	int option;
 
 	cout
-		<< "\n1.1. Ver horario"//Falta
+		<< "\n1.1. Ver horario"
 		<< "\n1.2. Inscribirse en un curso"
 		<< "\n1.3. Ver cursos matriculados"
 		<< "\n1.4. Ver calificaciones"
-		<< "\n1.5. Ver pensiones pendientes"//Falta
-		<< "\n1.6. Pagar pensiones"//Falta
-		<< "\n1.7. Atras" << endl
+		<< "\n1.5. Atras" << endl
 		<< "\nIngrese su opcion: "; cin >> option;
 
 	return option;
@@ -47,7 +45,7 @@ int ShowSubMenuTeacher_() {
 		<< "\n2.3. Ver alumnos por curso"//Falta
 		<< "\n2.4. Registrar nota"//Falta
 		<< "\n2.5. Atras" << endl
-		<< "\nIngrese su opcion: "; cin >> option;
+		<< "\nIngrese su opcion: 2."; cin >> option;
 
 	return option;
 }
@@ -57,15 +55,13 @@ string ShowSubMenuStudentsByCourse_(Teacher* _tempTeacher) {
 	queue<string> tempCourses = tempTeacher->getCourses_();
 
 	int option;
-
 	cout << endl;
 	tempTeacher->PrintCourses_();
-	cout << "\nIngrese su opcion: "; cin >> option;
-
+	cout << "Ingrese su opcion: "; cin >> option;
 
 	bool end{ false };
 	while (!(1 <= option && option <= tempCourses.size())) {
-		cout << "\nINGRESO INVALIDO... Vuelva a ingresar su opcion: "; cin >> option;
+		cout << "INGRESO INVALIDO... Vuelva a ingresar su opcion: "; cin >> option;
 	}
 
 	for (int i = 1; i <= option - 1; i++)
@@ -91,9 +87,10 @@ void CallSubMenuStudent_(Student* _tempStudent) {
 		case 1: {
 			ClearScreen_();
 
-
-
+			queue<string> tempCourses = tempStudent->getCourses_();
+			ShowSchedule_(tempCourses);
 			execute = true;
+
 			WaitKey_();
 		}
 			  break;
@@ -136,18 +133,8 @@ void CallSubMenuStudent_(Student* _tempStudent) {
 		}
 			  break;
 
+
 		case 5: {
-
-		}
-			  break;
-
-		case 6: {
-
-		}
-			  break;
-
-
-		case 7: {
 			end = true;
 		}
 			  break;
@@ -155,9 +142,9 @@ void CallSubMenuStudent_(Student* _tempStudent) {
 		default: {
 			do {
 				cout << "INGRESO INVALIDO... Vuelva a ingresar su opcion: "; cin >> option;
-			} while (!(1 <= option && option <= 7));
+			} while (!(1 <= option && option <= 5));
 
-			if (option == 7)  end = true;
+			if (option == 5)  end = true;
 		}
 			   break;
 		}
@@ -192,7 +179,8 @@ void CallSubMenuTeacher_(Teacher* _tempTeacher) {
 		case 1: {
 			ClearScreen_();
 
-			ShowSchedule_();
+			queue<string> tempCourses = tempTeacher->getCourses_();
+			ShowSchedule_(tempCourses);
 			execute = true;
 
 			WaitKey_();
@@ -212,9 +200,27 @@ void CallSubMenuTeacher_(Teacher* _tempTeacher) {
 
 		case 3: {
 			ClearScreen_();
+			queue<string> courses = tempTeacher->getCourses_();
+			string course = courses.front();
 
-			string course = ShowSubMenuStudentsByCourse_(tempTeacher);
-			CallSubMenuStudentsByCourse_(course);
+			List<Student*>* tempStudentList = LoadStudentsDataBaseToList_();
+			List<Student*>* studentsWithCourse = tempStudentList->SearchCourses_(course);
+
+			int index = 0;
+			if (!studentsWithCourse->Empty_()) {
+				Node<Student*>* currentNode = studentsWithCourse->getInitial_();
+				while (currentNode != nullptr) {
+					Student* student = currentNode->getElement_();
+					cout << " (" << index + 1 << ") " << student->getName_() << " " << student->getLastName_() << " - " << student->getCode_() << endl;
+					currentNode = currentNode->getNext_();
+					index++;
+				}
+			}
+			else {
+				cout << "No se encontraron estudiantes con el curso: " << course << endl;
+			}
+
+
 			execute = true;
 
 			WaitKey_();
@@ -222,7 +228,49 @@ void CallSubMenuTeacher_(Teacher* _tempTeacher) {
 			  break;
 
 		case 4: {
+			ClearScreen_();
+			queue<string> courses = tempTeacher->getCourses_();
+			string course = courses.front();
+			int score = -1;
 
+			List<Student*>* tempStudentList = LoadStudentsDataBaseToList_();
+			List<Student*>* studentsWithCourse = tempStudentList->SearchCourses_(course);
+
+			int index = 1;
+			if (!studentsWithCourse->Empty_()) {
+				Node<Student*>* currentNode = studentsWithCourse->getInitial_();
+				while (currentNode != nullptr) {
+					Student* student = currentNode->getElement_();
+					cout << " (" << index << ") " << student->getName_() << " " << student->getLastName_() << " : "; cin >> score;
+
+
+					
+
+					queue<string> coursesS = student->getCourses_();
+					queue<int> scoresS = student->getScores_();
+					int amountCourses = coursesS.size();
+
+					int aux = 0;
+					while (!coursesS.empty()) {
+						if (coursesS.front() == course) {
+							break;
+						}
+						coursesS.pop();
+						aux++;
+					}
+
+					AddScoresFile_(student->getCode_(), amountCourses, score, aux + 1);
+
+					currentNode = currentNode->getNext_();
+					index++;
+				}
+			}
+			else {
+				cout << "No se encontraron estudiantes con el curso: " << course << endl;
+			}
+
+			execute = true;
+			WaitKey_();
 		}
 			  break;
 
@@ -256,19 +304,5 @@ void CallSubMenuTeacher_(Teacher* _tempTeacher) {
 
 void CallSubMenuStudentsByCourse_(string _course) {
 
-	List<Student*>* tempStudentList = LoadStudentsDataBaseToList_();
-	List<Student*>* studentsWithCourse = tempStudentList->SearchCourses_(_course);
-
-	if (!studentsWithCourse->Empty_()) {
-		Node<Student*>* currentNode = studentsWithCourse->getInitial_();
-		while (currentNode != nullptr) {
-			Student* student = currentNode->getElement_();
-			cout << "Estudiante: " << student->getName_() << " " << student->getLastName_() << ", Codigo: " << student->getCode_() << endl;
-			currentNode = currentNode->getNext_();
-		}
-	}
-	else {
-		cout << "No se encontraron estudiantes con el curso: " << _course << endl;
-	}
 }
 

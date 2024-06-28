@@ -1,2 +1,4 @@
-Martin,Garrix,+x+x,"Algebra,Trigonometria,Historia"
-Ever,Carlos,e666,"Aritmetica,Geografia,Ingles"
+John,Arias,pcccjari,"Algebra"
+Jimmy,Armas,jarmas,"Geografia"
+Jorge,Diaz,pcsijord,"RazMatematico"
+Pedro,Castillo,pedcast,,Economia,Historia

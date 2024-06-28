@@ -73,21 +73,15 @@ List<Teacher*>* LoadTeachersDataBaseToList_() {
 	while (getline(dataBase, line)) {
 		istringstream ss(line);
 
-		string nameSS, lastNameSS, codeSS;
+		string nameSS, lastNameSS, codeSS, courseSS;
 		getline(ss, nameSS, ',');
 		getline(ss, lastNameSS, ',');
 		getline(ss, codeSS, ',');
+		getline(ss, courseSS, '"');
+		getline(ss, courseSS, '"');
 
-		string coursesLineSS;
-		getline(ss, coursesLineSS, '"');
-		getline(ss, coursesLineSS, '"');
-
-		istringstream ssC(coursesLineSS);
-
-		string course;
 		queue<string> coursesSS;
-		while (getline(ssC, course, ','))
-			coursesSS.push(course);
+		coursesSS.push(courseSS);
 
 		Teacher* tempTeacher = new Teacher(nameSS, lastNameSS, codeSS, coursesSS);
 		teacherList->AddFinal_(tempTeacher);
@@ -225,7 +219,67 @@ void AddCoursesFile_(string _codeStudent, string _newCourse, string _newScore) {
 	rename("Temp.txt", fileName.c_str());
 }
 
-void ShowSchedule_() {
+
+
+
+void AddScoresFile_(string _codeStudent, int _amountCourses, int _newScore, int _indexCourse) {
+	string fileName = "StudentsDataBase.txt";
+	ifstream dataBase(fileName);
+	ofstream tempDataBase("Temp.txt");
+
+	if (!dataBase.is_open()) {
+		cout << "ERROR AL ABRIR EL ARCHIVO: " << fileName << endl;
+		return;
+	}
+
+	string line;
+	while (getline(dataBase, line)) {
+		istringstream ss(line);
+		string nameSS, lastNameSS, codeSS, coursesSS, scoresSS;
+
+		getline(ss, nameSS, ',');
+		getline(ss, lastNameSS, ',');
+		getline(ss, codeSS, ',');
+		getline(ss, coursesSS, '"');
+		getline(ss, coursesSS, '"');
+		getline(ss, scoresSS, '"');
+		getline(ss, scoresSS, '"');
+
+		if (codeSS == _codeStudent) {
+			istringstream scoreSS(scoresSS);
+			string score;
+			string newScores = "";
+
+			for (int i = 0; i < _amountCourses; ++i) {
+				getline(scoreSS, score, ',');
+				if (i == _indexCourse - 1) {
+					newScores += to_string(_newScore);
+				}
+				else {
+					newScores += score;
+				}
+				if (i != _amountCourses - 1) {
+					newScores += ",";
+				}
+			}
+
+			tempDataBase << nameSS << "," << lastNameSS << "," << codeSS << ",\"" << coursesSS << "\",\"" << newScores << "\"" << endl;
+		}
+		else {
+			tempDataBase << line << endl;
+		}
+	}
+
+	dataBase.close();
+	tempDataBase.close();
+
+	remove(fileName.c_str());
+	rename("Temp.txt", fileName.c_str());
+}
+
+
+
+void ShowSchedule_(queue<string> _tempCourses) {
 	int numCellsHorizontal = 7;
 	int numCellsVertical = 17;
 	int cellWidth = 13;
@@ -243,7 +297,6 @@ void ShowSchedule_() {
 	int start = 7;
 	int end = start + 1;
 	int day = 1;
-
 	for (int j = 0; j < tableWidth; j++) {
 		for (int i = 0; i < tableHeight; i++) {
 			if (i > 2 && i % 2 != 0 && j == 1) {
@@ -276,8 +329,6 @@ void ShowSchedule_() {
 		}
 	}
 
-	FontColor_(White);
-
 	string course = "";
 	string M[16][6] = { "" };
 	for (int k = 0; k < 16; k++) {
@@ -303,7 +354,7 @@ void ShowSchedule_() {
 				M[k][p] == "(5,6)" ||
 				M[k][p] == "(8,4)" ||
 				M[k][p] == "(9,4)"
-				) course = "Trigo";
+				) course = "Trigonometria";
 			else if (
 				M[k][p] == "(4,1)" ||
 				M[k][p] == "(6,6)" ||
@@ -323,7 +374,7 @@ void ShowSchedule_() {
 			else if (
 				M[k][p] == "(5,1)" ||
 				M[k][p] == "(11,5)"
-				) course = "RazMate";
+				) course = "RazMatematico";
 			else if (
 				M[k][p] == "(6,2)" ||
 				M[k][p] == "(7,2)" ||
@@ -400,23 +451,38 @@ void ShowSchedule_() {
 				M[k][p] == "(16,1)"
 				) course = "Ingles";
 			else {
-				course = "SINCURSO";
+				course = " ";
 			}
 
 			M[k][p] = course;
-
-
 		}
 	}
 
-
+	bool show;
+	string cell;
+	queue<string> auxCourses;
 	for (int i = 0; i < 16; i++) {
 		for (int j = 0; j < 6; j++) {
-			string cell = M[i][j];
-			ShowString_(2 * x + (cellWidthWithBorder * (j + 1) + 1), y + (cellHeightWithBorder * (i + 1)) + 1, cell);
+			cell = M[i][j];
+			show = false;
+			auxCourses = _tempCourses;
+
+			while (!auxCourses.empty()) {
+				if (auxCourses.front() == cell) {
+					show = true;
+					break;
+				}
+				auxCourses.pop();
+			}
+
+			if (show)
+				ShowStringColor_(
+					2 * x + (cellWidthWithBorder * (j + 1) + 1),
+					y + (cellHeightWithBorder * (i + 1)) + 1,
+					cell,
+					DarkYellow);
 		}
 	}
 
-
-
+	FontColor_(White);
 }

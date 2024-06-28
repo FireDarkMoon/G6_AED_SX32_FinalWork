@@ -13,6 +13,8 @@ List<Teacher*>* LoadTeachersDataBaseToList_();
 void AddCoursesFile_(string, string, string);
 bool ValidateCourse_(const string&);
 queue<string> EnterCoursesScores_(char);
-void ShowSchedule_();
+void ShowSchedule_(queue<string>);
+
+void AddScoresFile_(string, int, int,int);
 
 #endif

@@ -1,4 +1,4 @@
-﻿  ExtraFunctions.cpp
+﻿  Functions.cpp
 M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(9,21): warning C4309: 'inicializando': truncamiento de valor constante
 M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(18,22): warning C4309: 'inicializando': truncamiento de valor constante
 M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(19,22): warning C4309: 'inicializando': truncamiento de valor constante
@@ -31,7 +31,7 @@ M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_Fina
 M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(52,23): warning C4309: 'inicializando': truncamiento de valor constante
 M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(53,23): warning C4309: 'inicializando': truncamiento de valor constante
 M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\EnumsConstants.h(54,21): warning C4309: 'inicializando': truncamiento de valor constante
-M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\ExtraFunctions.cpp(113,25): warning C4267: 'argumento': conversión de 'size_t' a 'int'; posible pérdida de datos
-M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\List.h(143,23): warning C4018: '<': no coinciden signed/unsigned
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\Functions.cpp(7,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\Functions.cpp(110,2): warning C4809: la instrucción switch tiene una etiqueta 'default' redundante; se proporcionan todas las etiquetas 'case' posibles
   ExtraFunctions.obj : se encontró un módulo MSIL; vinculación incremental deshabilitada para MSIL; ejecutando vínculo completo
   G6_AED_SX32_FinalWork.vcxproj -> M:\Programming\Visual Studio 2022\C++\Sources\repos CLR\Consola\G6_AED_SX32_FinalWork\x64\Debug\G6_AED_SX32_FinalWork.exe
